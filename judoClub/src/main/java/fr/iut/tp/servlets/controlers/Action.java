@@ -20,7 +20,6 @@ import org.judo.services.Service;
  */
 public class Action extends HttpServlet {
 	private static final String ERROR404_HTML = "/WEB-INF/404.html";
-	//private static final String LOGIN_HTML = "/WEB-INF/login.html";
 	private static final String LOGIN_SESSION_OBJECT_ID = "login";
 	private static final String NAME_PARAMETER_ID = "name";
 	private static final String OK = "ok";
@@ -40,7 +39,13 @@ public class Action extends HttpServlet {
 		nomRessources.put("/coordonnees", "/WEB-INF/coordonnees.html");
 		nomRessources.put("/profil", "/Profil");
 	}
-	
+	/**
+	 * Ajout les servlets pour construire la page
+	 * @param request
+	 * @param response
+	 * @param nomDeLaRessoure
+	 * @param idSession
+	 */
 	private void display(HttpServletRequest request, HttpServletResponse response, String nomDeLaRessoure, String idSession) {
 		include(request, response, "/header");
 		request.setAttribute("idSession", idSession);
@@ -90,7 +95,12 @@ public class Action extends HttpServlet {
 
 		response.sendRedirect("/judoClub/action/accueil");
 	}
-	
+	/**
+	 * inclue une jsp ou servlet a la page
+	 * @param request
+	 * @param response
+	 * @param nomDeLaRessoure
+	 */
 	private void include(HttpServletRequest request, HttpServletResponse response, String nomDeLaRessoure) {
 		RequestDispatcher rd = getServletContext().getRequestDispatcher(nomDeLaRessoure);
 		try {
@@ -102,19 +112,35 @@ public class Action extends HttpServlet {
 		}
 		
 	}
-	
+	/**
+	 *  Vérifie si une session existe
+	 * @param request
+	 * @return
+	 */
 	private boolean isExistSession(HttpServletRequest request) {
 		return request.getSession().getAttribute(LOGIN_SESSION_OBJECT_ID) != null;
 	}
-	
+	/**
+	 *  
+	 * @param request
+	 * @return le nom de l utilisateur connecté
+	 */
 	private String getIdSession(HttpServletRequest request) {
 		return (String) request.getSession().getAttribute(LOGIN_SESSION_OBJECT_ID);
 	}
-	
+/**
+ *  Vérifie si l'utilisateur veut se déconnecter
+ * @param path
+ * @return 
+ */
 	private boolean islogout(String path) {
 		return "/logout".contentEquals(path);
 	}
 	
+	/**
+	 * Vérification du mot de passe
+	 * @param request 
+	 */
 	private boolean verificationPWD(HttpServletRequest request, HttpServletResponse response) {
 		boolean resultat = false;
 		String pwd = request.getParameter(PWD);
@@ -126,6 +152,10 @@ public class Action extends HttpServlet {
 		
 		return resultat;
 	}
+	/**
+	 * Renvoie nom le nom de la ressouces pour traité la requête : servlet / jsp
+	 * @param request 
+	 */
 	private String  getNomRessource(HttpServletRequest request){
 
 		for(Entry<String, String> entry : nomRessources.entrySet()) {
@@ -137,6 +167,10 @@ public class Action extends HttpServlet {
 		return null;
 		
 	}
+	/**
+	 * Envoie la page Erreur 404
+	 * @param request 
+	 */
 	private void send404(HttpServletRequest request, HttpServletResponse response){
 		
 			RequestDispatcher rd = getServletContext().getRequestDispatcher(ERROR404_HTML);
@@ -149,8 +183,11 @@ public class Action extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
-		
 	}
+	/**
+	 * Ajoute les ressouces nécessaire à la requête
+	 * @param request 
+	 */
 	private void addRessource(HttpServletRequest request ){
 		if(request.getPathInfo().equals("/competitions")){
 			List<Competition> competitions = Service.getCompetitions();

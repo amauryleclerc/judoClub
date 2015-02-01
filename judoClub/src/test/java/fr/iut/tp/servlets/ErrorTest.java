@@ -3,7 +3,6 @@ package fr.iut.tp.servlets;
 import junit.framework.TestCase;
 
 import com.meterware.httpunit.WebConversation;
-import com.meterware.httpunit.WebForm;
 import com.meterware.httpunit.WebResponse;
 
 public class ErrorTest extends TestCase {
