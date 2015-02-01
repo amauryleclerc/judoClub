@@ -1,0 +1,48 @@
+@CHARSET "ISO-8859-1";
+
+header {
+	background-color: #ADD8E6;
+	vertical-align: top;
+	padding: 10px;
+	
+}
+
+div.header2 {
+	background-color: #ADD8E6;
+	vertical-align: top;
+	padding: 0px;
+}
+
+div.menu {
+	background-color: #ADD8E6;
+	vertical-align: top;
+	width: 10%;
+	float:left;
+
+}
+
+div.page {
+	background-color: #DCDCDC;	
+	vertical-align: top;
+	 float:left;
+	width: 90%;
+
+}
+
+div.utilisateur {
+	background-color: #ADD8E6;
+	vertical-align: top;
+	padding: 0px;
+		
+}
+footer {
+	background-color: #ADD8E6;
+	vertical-align: top;
+	padding: 0px;		
+	clear:both;
+}
+
+span.msg {
+	background-color: white ;
+	color: red ;
+}
