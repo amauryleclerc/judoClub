@@ -16,9 +16,9 @@ public class ErrorTest extends TestCase {
 	
 	
 	/**
-	 * Test avec un mot de passe invalide 
+	 * Test avec une page inexistante
 	 */
-	public void testBadLogin() throws Exception {
+	public void test404() throws Exception {
 		WebResponse page;
 		page = webConversation.getResponse(URL_ROOT + "/action/qsfsdqfq");
 		WebResponse newPage = webConversation.getCurrentPage();
